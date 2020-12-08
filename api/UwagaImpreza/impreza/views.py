@@ -54,3 +54,86 @@ class LocalDetalisApi(APIView):
         cords = self.get_local(pk)
         cords.delete()
         return Response(status=status.HTTP_202_NO_CONTENT)
+
+
+class GuestApi(APIView):
+
+    def get(self, request, *args, **kwargs):
+        cords = Guest.objects.all()
+        serializer = GuestSerializer(cords, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, *args, **kwargs):
+        serializer = GuestSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class GuestDetalisApi(APIView):
+
+    def get_guest(self, pk):
+        try:
+            return Guest.objects.get(pk=pk)
+        except:
+            raise Http404
+
+    def get(self, request, pk, *args, **kwargs):
+        cords = self.get_guest(pk)
+        serializer = GuestSerializer(cords)
+        return Response(serializer.data)
+
+    def put(self, request, pk, *args, **kwargs):
+        cords = self.get_local(pk)
+        serializer = GuestSerializer(cords, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, *args, **kwargs):
+        cords = self.get_local(pk)
+        cords.delete()
+        return Response(status=status.HTTP_202_NO_CONTENT)
+
+class HostApi(APIView):
+
+    def get(self, request, *args, **kwargs):
+        cords = Host.objects.all()
+        serializer = HostSerializer(cords, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, *args, **kwargs):
+        serializer = HostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class HostDetalisApi(APIView):
+
+    def get_host(self, pk):
+        try:
+            return Host.objects.get(pk=pk)
+        except:
+            raise Http404
+
+    def get(self, request, pk, *args, **kwargs):
+        cords = self.get_host(pk)
+        serializer = HostSerializer(cords)
+        return Response(serializer.data)
+
+    def put(self, request, pk, *args, **kwargs):
+        cords = self.get_host(pk)
+        serializer = HostSerializer(cords, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, *args, **kwargs):
+        cords = self.get_local(pk)
+        cords.delete()
+        return Response(status=status.HTTP_202_NO_CONTENT)
