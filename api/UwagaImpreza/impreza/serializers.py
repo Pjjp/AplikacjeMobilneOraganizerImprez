@@ -72,7 +72,7 @@ class LocalSerializer(serializers.ModelSerializer):
 
 class GuestSerializer(serializers.ModelSerializer):
 
-    guest_location = CordinatesSerializer(
+    location = CordinatesSerializer(
         many=False,
         read_only=True,
     )
@@ -81,7 +81,7 @@ class GuestSerializer(serializers.ModelSerializer):
         model = Guest
         fields = [
             'name', 'description', 'age',
-            'sex', 'image', 'guest_location']
+            'sex', 'image', 'location']
 
 
 class HostSerializer(serializers.ModelSerializer):

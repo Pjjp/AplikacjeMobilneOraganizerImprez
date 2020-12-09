@@ -1,5 +1,5 @@
 
-# Wiedza i Życie - Scraper
+# Uwaga Impreza
 ___________________________
 
 ### Prerequisites
@@ -21,7 +21,7 @@ ___________________________
 
 ### Building Command
 
-in order to build the command for scraper run:
+in order to build the command for run:
 
 ```bash
 python setup.py develop
