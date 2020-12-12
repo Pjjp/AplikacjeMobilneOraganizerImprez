@@ -11,7 +11,13 @@ import { AddEditLocalComponent } from './local/add-edit-local/add-edit-local.com
 import { GuestComponent } from './guest/guest.component';
 import { ShowGuestComponent } from './guest/show-guest/show-guest.component';
 import { AddEditGuestComponent } from './guest/add-edit-guest/add-edit-guest.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 import { AppRoutes } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { SharedDependenciesModule } from './@shared-dependencies/shared-dependencies.module';
+import { SharedModule } from './@shared/shared.module'
+
 
 @NgModule({
   declarations: [
@@ -22,6 +28,7 @@ import { AppRoutes } from './app-routing.module';
     GuestComponent,
     ShowGuestComponent,
     AddEditGuestComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +36,9 @@ import { AppRoutes } from './app-routing.module';
     FormsModule,
     ReactiveFormsModule,
     AppRoutes,
+    SharedDependenciesModule,
+    BrowserAnimationsModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

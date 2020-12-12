@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { EditionsComponent } from './editions';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LocalComponent } from './local/local.component'
+import { GuestComponent } from './guest/guest.component'
 
 const routes: Routes = [
   { path: '',
-    redirectTo: '/editions',
+    redirectTo: '/local',
     pathMatch: 'full'
   },
   {
-    path: 'editions',
-    component: EditionsComponent
+    path: 'local',
+    component: LocalComponent
+  },
+  {
+    path: 'guest',
+    component: GuestComponent
   },
   {
     path: '**',

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestApiService } from 'src/app/rest-api.service'
 
 @Component({
   selector: 'app-local',
