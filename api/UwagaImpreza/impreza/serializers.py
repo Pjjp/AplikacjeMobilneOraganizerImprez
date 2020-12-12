@@ -1,11 +1,13 @@
 
-from .models import GeographicCords
-from .models import Cordinates
-from .models import AgeSpan
-from .models import RoomState
-from .models import Local
-from .models import Guest
-from .models import Host
+from .models import (
+    GeographicCords,
+    Cordinates,
+    AgeSpan,
+    RoomState,
+    Local,
+    Guest,
+    Host,
+)
 
 from rest_framework import serializers
 
@@ -80,8 +82,8 @@ class GuestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Guest
         fields = [
-            'name', 'description', 'age',
-            'sex', 'image', 'location']
+            'name', 'email', 'description', 'age',
+            'sex', 'avatar', 'location']
 
 
 class HostSerializer(serializers.ModelSerializer):
@@ -89,3 +91,14 @@ class HostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Host
         fields = '__all__'
+
+
+class UserAvatarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Guest
+        fields = ["avatar"]
+
+    def save(self, *args, **kwargs):
+        if self.instance.avatar:
+            self.instance.avatar.delete()
+        return super().save(*args, **kwargs)

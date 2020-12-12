@@ -7,3 +7,6 @@ djangorestframework==3.12.2
 
 # -- for PostgreSQL integration
 psycopg2-binary==2.8.6
+
+# -- cors headers
+django-cors-headers==3.5.0

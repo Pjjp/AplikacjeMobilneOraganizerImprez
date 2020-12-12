@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.conf import settings
 #
 # BASIC_MODELS
 #
@@ -57,12 +57,22 @@ class Local(models.Model):
 
 
 class Guest(models.Model):
+
+    SEX_CHOICES = (
+        ('male', 'Male'),
+        ('female', 'Female'),
+    )
+
     name = models.CharField(max_length=20)
+    # email = models.EmailField(unique=True)
+    email = models.EmailField(null=True, blank=True)
     description = models.CharField(max_length=3000)
     age = models.IntegerField(default=1)
-    sex = models.CharField(max_length=5)
-    image = models.ImageField(null=True, blank=True)
-    location = models.ForeignKey(Cordinates, null=True, on_delete= models.SET_NULL, related_name='%(class)s_guest_created')
+    sex = models.CharField(max_length=10, choices=SEX_CHOICES)
+    avatar = models.ImageField(upload_to='images/%Y/%m/%d', blank=True)
+    location = models.ForeignKey(
+        Cordinates, null=True, on_delete=models.CASCADE,
+        related_name='%(class)s_guest_created')
 
     def __str__(self):
         return self.name
@@ -73,3 +83,10 @@ class Host(Guest):
 
     def __str__(self):
         return self.name
+
+
+class File(models.Model):
+    file = models.FileField(blank=False, null=False)
+    
+    def __str__(self):
+        return self.file.name

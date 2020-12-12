@@ -10,6 +10,7 @@ urlpatterns = [
     path('guest/<int:pk>', views.GuestDetalisApi.as_view()),
     path('host/', views.HostApi.as_view()),
     path('host/<int:pk>', views.HostDetalisApi.as_view()),
+    path('', views.UserAvatarUpload.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
