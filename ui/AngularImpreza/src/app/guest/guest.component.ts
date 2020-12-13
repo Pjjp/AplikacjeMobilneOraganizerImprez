@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestApiService } from 'src/app/rest-api.service'
 
 @Component({
   selector: 'app-guest',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuestComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:RestApiService) { }
+
+  guests_list:any=[];
 
   ngOnInit(): void {
+    this.getGuestList();
+  }
+
+  getGuestList(){
+    this.service.getGuestList().subscribe(data=>{
+      this.guests_list=data;
+    });
   }
 
 }

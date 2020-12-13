@@ -1,9 +1,13 @@
+
+import hashlib
+import os
+
 from django.db import models
 from django.conf import settings
+
 #
 # BASIC_MODELS
 #
-
 
 class GeographicCords(models.Model):
     direction = models.CharField(max_length=10) ## north or south, east or west
@@ -58,6 +62,15 @@ class Local(models.Model):
 
 class Guest(models.Model):
 
+    def get_hashed(instance, filename):
+        if(instance.avatar.open()):
+            file = instance.avatar.read()
+            file_name, ext = os.path.splitext(filename)
+            file_name = f'images/{hashlib.md5(file).hexdigest()}{ext}'
+        else:
+            return 'error_while_reading_file'
+        return file_name
+
     SEX_CHOICES = (
         ('male', 'Male'),
         ('female', 'Female'),
@@ -69,7 +82,7 @@ class Guest(models.Model):
     description = models.CharField(max_length=3000)
     age = models.IntegerField(default=1)
     sex = models.CharField(max_length=10, choices=SEX_CHOICES)
-    avatar = models.ImageField(upload_to='images/%Y/%m/%d', blank=True)
+    avatar = models.ImageField(upload_to=get_hashed, blank=True)
     location = models.ForeignKey(
         Cordinates, null=True, on_delete=models.CASCADE,
         related_name='%(class)s_guest_created')
@@ -87,6 +100,6 @@ class Host(Guest):
 
 class File(models.Model):
     file = models.FileField(blank=False, null=False)
-    
+
     def __str__(self):
         return self.file.name

@@ -1,0 +1,38 @@
+@import 'src/theme.scss';
+
+$primary: map-get($my-theme, primary);
+$accent: map-get($my-theme, accent);
+$warn: map-get($my-theme, warn);
+
+.guest-card {
+    display: inline-block;
+    background-color: mat-color($warn);
+
+    // .header{
+    //     background-color: mat-color($accent);
+    //     margin: -12px;
+    // }
+    .thubnail{
+        height: 50px;
+        width: 50px;
+    }
+  
+    color: black;
+  
+    width: 220px;
+    max-width: 80vw;
+    margin: 10px;
+
+    img {
+        margin: 10px;
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+    }
+
+    .content{
+        margin-top: 10px;
+    }
+    
+  }
+  
