@@ -1,11 +1,10 @@
-<app-toolbar></app-toolbar>
 <mat-card class="guest-card">
     <mat-card-header class='header'>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{ guest.name }}</mat-card-title>
       <mat-card-subtitle>user</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="'http://127.0.0.1:8000'+guest.avatar">
+    <img mat-card-image src={{mainUrl}}{{guest.avatar}}>
       <mat-card-content class='content'>
         age: {{guest.age}}
         <br>

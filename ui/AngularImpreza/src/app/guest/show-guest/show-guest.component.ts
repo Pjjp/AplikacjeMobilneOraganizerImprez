@@ -11,11 +11,14 @@ export class ShowGuestComponent implements OnInit {
   constructor(private service:RestApiService) { }
 
   guests_list:any=[];
-  image:string=null;
-  guest:any;
+  // guest:any;
+  mainUrl:string;
+  @Input() guest;
 
   ngOnInit(): void {
     this.get_guest(5);
+    this.mainUrl = this.service.getMainURL();
+    console.log(this.mainUrl)
   }
 
   get_guest(id){

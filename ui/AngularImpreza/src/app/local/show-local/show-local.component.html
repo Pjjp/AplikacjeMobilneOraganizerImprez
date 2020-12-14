@@ -1,1 +1,60 @@
 
+  <!-- *ngIf="store.state$ | async as state"  -->
+  <mat-card class="local-card">
+      <mat-card-header class='header'>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ local.local_name }}</mat-card-title>
+        <mat-card-subtitle>local</mat-card-subtitle>
+      </mat-card-header>
+        <mat-card-content class='content'>
+          <p>
+            <span>
+              Przedział Wiekowy: 
+            </span>
+            {{ local.room_state.age_span.min_age }} : {{ local.room_state.age_span.max_age }}
+          </p>
+          <p>
+            <span>
+              Otwartość Pokoju: 
+            </span>
+            {{true == local.room_state.is_open ? 'Otwarty !! ;)' : 'Niestey nie :(' }}
+          </p>
+          <p>
+            <span>
+              Liczba gości: 
+            </span>
+            {{local.room_state.member_count}}
+          </p>
+          <p>
+            <span>
+              Dozwolona liczba gości: 
+            </span>
+            {{local.room_state.max_member_count}}
+          </p>
+          <p>
+            <span>
+              Selekcja Wiekowa: 
+            </span>
+            {{true == local.room_state.is_selction ? 'Impreza z ograniczeniem wiekowym' : 'Wstęp w każdym wieku'}}
+          </p>
+          <p>
+            <span>
+              Data utworzenia: 
+            </span>
+            {{local.room_state.date}}
+          </p>
+         
+        </mat-card-content>
+        
+        <mat-card-actions>
+          <button mat-raised-button color='accent' ><mat-icon>accessibility</mat-icon>Goście</button>
+          <br>
+          <br>
+          <button mat-raised-button color='accent' ><mat-icon>contact_page</mat-icon>Gospodarz: {{local.host.name}}</button>
+          <br>
+          <br>
+          <button mat-raised-button color='accent' >Join</button>
+          <br>
+        </mat-card-actions>
+  </mat-card>
+

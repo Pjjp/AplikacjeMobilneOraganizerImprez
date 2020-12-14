@@ -5,8 +5,7 @@ from .models import (
     AgeSpan,
     RoomState,
     Local,
-    Guest,
-    Host,
+    User,
 )
 
 from rest_framework import serializers
@@ -56,6 +55,20 @@ class RoomStateSerializer(serializers.ModelSerializer):
             'max_member_count', 'is_selction']
 
 
+class UserSerializer(serializers.ModelSerializer):
+
+    location = CordinatesSerializer(
+        many=False,
+        read_only=True,
+    )
+
+    class Meta:
+        model = User
+        fields = [
+            'name', 'email', 'description', 'age',
+            'sex', 'avatar', 'location']
+
+
 class LocalSerializer(serializers.ModelSerializer):
 
     local_location = CordinatesSerializer(
@@ -66,36 +79,33 @@ class LocalSerializer(serializers.ModelSerializer):
         many=False,
         read_only=True,
     )
-
-    class Meta:
-        model = Local
-        fields = ['local_name', 'room_state', 'date', 'local_location']
-
-
-class GuestSerializer(serializers.ModelSerializer):
-
-    location = CordinatesSerializer(
+    guests = UserSerializer(
+        # many=True,
+        many=False,
+        read_only=True,
+    )
+    host = UserSerializer(
         many=False,
         read_only=True,
     )
 
     class Meta:
-        model = Guest
+        model = Local
         fields = [
-            'name', 'email', 'description', 'age',
-            'sex', 'avatar', 'location']
+            'local_name', 'room_state', 'date',
+            'local_location', 'guests', 'host']
 
-
-class HostSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Host
-        fields = '__all__'
+    def create(self, validated_data):
+        guests = validated_data.pop('guests')
+        local = Local.objects.create(**validated_data)
+        for guest_data in guests:
+            User.objects.create(local=local, **guest_data)
+        return local
 
 
 class UserAvatarSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Guest
+        model = User
         fields = ["avatar"]
 
     def save(self, *args, **kwargs):
