@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  web:
+    env_file:
+      - ./.env.dev
+    build: ./api/UwagaImpreza
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./api/UwagaImpreza:/usr/src/api/
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+  db:
+    env_file:
+      - ./.env.dev
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=${SQL_USER}
+      - POSTGRES_PASSWORD=${SQL_PASSWORD}
+      - POSTGRES_DB=${SQL_DATABASE}
+
+volumes:
+  postgres_data:

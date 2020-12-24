@@ -10,3 +10,6 @@ psycopg2-binary==2.8.6
 
 # -- cors headers
 django-cors-headers==3.5.0
+
+# -- for image storage
+Pillow==8.0.1
