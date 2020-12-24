@@ -8,7 +8,8 @@ import { RestApiService } from 'src/app/rest-api.service'
 })
 export class LocalComponent implements OnInit {
 
-  constructor() { }
+  
+  constructor(private service:RestApiService) { }
 
   ngOnInit(): void {
   }
