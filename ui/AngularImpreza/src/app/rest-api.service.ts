@@ -7,10 +7,14 @@ import { Observable } from 'rxjs';
 })
 export class RestApiService {
 
-  readonly APIG = 'http://127.0.0.1:8000'
-  readonly APIUrl = 'http://127.0.0.1:8000/app/'
-  readonly APILocation = 'http://127.0.0.1:8000/app/location/'
-  readonly APIGuest = 'http://127.0.0.1:8000/app/guest/'
+  // readonly APIG = 'http://127.0.0.1:8000'
+  // readonly APIG = 'http://104.236.31.84:8000'
+  readonly APIG = 'http://0.0.0.0:8000'
+  readonly APIUrl = this.APIG+'/app/'
+  readonly APILocation = this.APIG+'/app/location/'
+  readonly APIGuest = this.APIG+'/app/guest/'
+  readonly APIUser = this.APIG+'/app/user/'
+
 
   constructor(private http: HttpClient) { }
 
@@ -34,5 +38,11 @@ export class RestApiService {
     console.log(this.APILocation+String(id));
     return this.http.get<any>(this.APILocation+String(id));
   }
+
+  addAgeSpan(val:any){
+    return this.http.post(this.APIG + '/app/agespan/',val);
+  }
+  
+
 
 }

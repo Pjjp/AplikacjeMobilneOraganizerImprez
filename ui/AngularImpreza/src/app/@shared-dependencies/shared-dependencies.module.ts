@@ -11,34 +11,36 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatExpansionModule } from '@angular/material/expansion';
+import {MatSelectModule} from '@angular/material/select'; 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+const modules = [
+  CommonModule,
+    MatButtonModule,
+    MatCardModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatProgressBarModule,
+    MatPaginatorModule,
+    MatMenuModule,
+    MatExpansionModule,
+    MatSelectModule,
+    MatSnackBarModule,
+];
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
-    MatButtonModule,
-    MatCardModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatProgressBarModule,
-    MatPaginatorModule,
+    ...modules
   ],
   exports: [
-    CommonModule,
-    MatButtonModule,
-    MatCardModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatProgressBarModule,
-    MatPaginatorModule,
+    ...modules
   ]
 })
 export class SharedDependenciesModule { }

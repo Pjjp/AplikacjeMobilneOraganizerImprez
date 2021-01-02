@@ -1,0 +1,44 @@
+@import 'src/theme.scss';
+
+$primary: map-get($my-theme, primary);
+$accent: map-get($my-theme, accent);
+$warn: map-get($my-theme, warn);
+
+.login{
+    background-color: mat-color($primary);
+}
+
+.error{
+    font-size: 14px;
+    color:	#ff3333;
+}
+
+mat-card {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+mat-form-field {
+      width: 100%;
+      margin-bottom: 16px;
+}
+
+.server-error {
+    margin: 8px 0;;
+}
+
+
+input {    
+    height: 2em;              
+    div.mat-form-field-infix {
+      padding: .3em 0;
+      input.mat-input-element {
+        vertical-align: top;
+      }
+    }
+  }
+  div.mat-form-field-wrapper{
+    padding-bottom: 1.15em;
+  }

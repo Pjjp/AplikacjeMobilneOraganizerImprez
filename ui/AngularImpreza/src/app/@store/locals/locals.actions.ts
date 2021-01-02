@@ -1,66 +1,36 @@
 
-import { Action } from 'src/app/@store/guests/node_modules/@ngrx/store';
-import { Edition } from './locals.model';
+import { Type } from '@angular/core';
+import { Action } from '@ngrx/store';
+import { Local } from './locals.model';
 
-export namespace EditionsActions {
-  export enum Type {
-    BULK_READ_EDITIONS = '[EDITIONS] Bulk Read Editions',
-    BULK_READ_EDITIONS_SUCCESS = '[EDITIONS] Bulk Read Editions Success',
-    BULK_READ_EDITIONS_ERROR = '[EDITIONS] Bulk Read Editions Error',
-    FILTER_EDITIONS = '[EDITIONS] Filter Editions',
-    RUN_PROGRESS_BAR = '[EDITIONS_GRID] Run Progress Bar, while bulk read',
-    STOP_PROGRESS_BAR = '[EDITIONS_GRID] Stops Progress Bar, after bulk read',
-    SUBSET_EDITIONS = '[EDITIONS] Chose Editions Based On Borders',
-  }
+export namespace LocalsActions{
+    export enum Type{
+        BULK_READ_LOCALS = '[LOCALS] Bulk Read Locals',
+        BULK_READ_LOCALS_SUCESS = '[LOCALS] Bulk Read Local Sucess',
+        BULK_READ_LOCALS_ERROR = '[LOCALS] Bulk Read Locals Error',
+    }
 
-  export class BulkReadEditions implements Action {
-    readonly type = Type.BULK_READ_EDITIONS;
 
-    constructor() {}
-  }
+    export class BULK_READ_LOCALS implements Action {
+        readonly type = Type.BULK_READ_LOCALS;
 
-  export class BulkReadEditionsSuccess implements Action {
-    readonly type = Type.BULK_READ_EDITIONS_SUCCESS;
+        constructor() {}
+    }
 
-    constructor(public payload: { editions: Edition[], query?: string }) {}
-  }
+    export class BULK_READ_LOCALS_SUCESS implements Action {
+        readonly type = Type.BULK_READ_LOCALS_SUCESS;
 
-  export class BulkReadEditionsError implements Action {
-    readonly type = Type.BULK_READ_EDITIONS_ERROR;
+        constructor(public payload: { locals: Local[]}) {}
+    }
 
-    constructor() {}
-  }
+    export class BULK_READ_LOCALS_ERROR implements Action {
+        readonly type = Type.BULK_READ_LOCALS_ERROR;
 
-  export class FilterEditions implements Action {
-    readonly type = Type.FILTER_EDITIONS;
+        constructor() {}
+    }
 
-    constructor(public payload: { query: string }) {}
-  }
-
-  export class RunProgressBar implements Action {
-    readonly type = Type.RUN_PROGRESS_BAR;
-
-    constructor() {}
-  }
-
-  export class StopProgressBar implements Action {
-    readonly type = Type.STOP_PROGRESS_BAR;
-
-    constructor() {}  
-  }
-
-  export class SubsetEditions implements Action {
-    readonly type = Type.SUBSET_EDITIONS;
-
-    constructor(public payload: {start: number, end: number}) {}
-  }
-
-  export type Actions =
-    | BulkReadEditions
-    | BulkReadEditionsSuccess
-    | BulkReadEditionsError
-    | FilterEditions
-    | RunProgressBar
-    | StopProgressBar
-    | SubsetEditions;
+    export type Actions =
+    | BULK_READ_LOCALS
+    | BULK_READ_LOCALS_SUCESS
+    | BULK_READ_LOCALS_ERROR
 }

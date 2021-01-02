@@ -1,0 +1,61 @@
+@import 'src/theme.scss';
+
+$primary: map-get($my-theme, primary);
+$accent: map-get($my-theme, accent);
+$warn: map-get($my-theme, warn);
+
+.local-card {
+    display: inline-block;
+    background-color: mat-color($primary);
+
+
+    // .header{
+    //     background-color: mat-color($accent);
+    //     margin: -12px;
+    // }
+    .thubnail{
+        height: 50px;
+        width: 50px;
+    }
+  
+    // color: black;
+  
+    width: 270px;
+    max-width: 80vw;
+    margin: 10px;
+
+    img {
+        margin: 10px;
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+    }
+
+    .content{
+        margin-top: 10px;
+    }
+
+    span{
+        font-weight: bold;
+    }
+    
+  }
+
+  .mat-form-field + .mat-form-field {
+    margin: 5px;
+    margin-left: 8px;
+  }
+  
+  .expansion {
+    //   background-color: mat-color($primary);
+  }
+
+  ::ng-deep .mat-list-item:hover {
+    // background-color: mat-color($accent);
+    // border: 1px solid gray;
+    background-color: mat-color($primary);
+   }
+
+   .fill-space {
+    flex: 1 1 auto;
+  }

@@ -1,0 +1,40 @@
+<mat-card class='login'>
+   
+  
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field color="warn">
+        <input
+          matInput
+          formControlName="minage"
+          type="input"
+          placeholder="minage"
+          autocomplete="off"
+        />
+  
+      </mat-form-field>
+  
+      <mat-form-field color="warn">
+        <input
+          matInput
+          formControlName="maxage"
+          type="input"
+          placeholder="maxage"
+          autocomplete="off"
+        />
+  
+      </mat-form-field>
+  
+       
+      
+     
+      <button
+        mat-stroked-button
+        type="submit"
+      >
+        send
+      </button>
+  
+     
+    </form>
+  
+</mat-card>

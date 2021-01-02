@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestApiService } from 'src/app/rest-api.service'
+import { LocalsStore } from '../@store';
 
 @Component({
   selector: 'app-local',
@@ -9,9 +10,14 @@ import { RestApiService } from 'src/app/rest-api.service'
 export class LocalComponent implements OnInit {
 
   
-  constructor(private service:RestApiService) { }
+  constructor(
+    private service:RestApiService,
+    public store: LocalsStore,
+    ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.store.bulkReadLocals();
+    console.log('oninit bulk read');
   }
 
 }

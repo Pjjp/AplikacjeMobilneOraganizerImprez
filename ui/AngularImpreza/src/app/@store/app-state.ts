@@ -1,8 +1,6 @@
 
-import { EditionsState } from './editions/editions.state';
-import { ArticlesState } from './guests/guests.state';
+import { LocalsState } from './locals/locals.state';
 
 export interface AppState {
-  readonly editions: EditionsState;
-  readonly articles: ArticlesState;
+  readonly locals: LocalsState;
 }

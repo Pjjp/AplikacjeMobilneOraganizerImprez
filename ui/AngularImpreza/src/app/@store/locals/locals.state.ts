@@ -1,13 +1,7 @@
+import { Local } from './locals.model';
 
-import { Edition } from './locals.model';
+export interface LocalsState {
 
-export interface EditionsState {
-
-  allEditions: Edition[];
+  allLocals: Local[];
   
-  filteredEditions: Edition[];
-
-  selectedEdition: Edition;
-
-  setProgressBar: boolean;
 }

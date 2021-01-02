@@ -1,18 +1,25 @@
 @import "../node_modules/@angular/material/theming";
 @include mat-core();
 
-$my-primary: mat-palette($mat-light-green, 800);
-$my-accent: mat-palette($mat-light-green, 600);
-$my-warn: mat-palette($mat-light-green, 400);
+$my-primary: mat-palette($mat-gray, 900);
+$my-accent: mat-palette($mat-gray, 600);
+$my-warn: mat-palette($mat-gray, 400);
 
-$my-theme: mat-light-theme($my-primary, $my-accent, $my-warn);
+$my-theme: mat-dark-theme($my-primary, $my-accent, $my-warn);
 
+
+//for dark theme
+$market-primary-dark: mat-palette($mat-green);
+$market-accent-dark: mat-palette($mat-green);
+$market-warn-dark: mat-palette($mat-green);
+$market-theme-dark: mat-dark-theme($market-primary-dark, $market-accent-dark, $market-warn-dark);
+
+// @include angular-material-theme($my-theme);
 @include angular-material-theme($my-theme);
 
-
-.alter {
-  $my-primary: mat-palette($mat-amber, 800);
-  $my-accent: mat-palette($mat-light-green, 800);
-  $my-theme: mat-light-theme($my-primary, $my-accent);
-  @include angular-material-theme($my-theme);
+.dark-theme-mode {
+    @include angular-material-theme($market-theme-dark);
 }
+
+
+

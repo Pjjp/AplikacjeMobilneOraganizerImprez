@@ -1,57 +1,63 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Action, Store } from 'src/app/@store/guests/node_modules/@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { Actions, Effect, ofType, createEffect } from '@ngrx/effects';
 import { Observable, of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap, filter, tap, withLatestFrom } from 'rxjs/operators';
+import { catchError, map, switchMap, filter, tap, withLatestFrom } from 'rxjs/operators';
 
 import { AppState } from '../app-state';
-import { EditionsActions } from './locals.actions';
-import { Edition } from './locals.model';
-import { EditionsStore } from '@store';
+import { LocalsActions } from './locals.actions';
+import { Local } from './locals.model';
+import { LocalsStore } from './';
+
+import { RestApiService } from 'src/app/rest-api.service'
+
 
 @Injectable()
-export class EditionsEffects {
+export class LocalsEffects {
   @Effect()
-  onBulkReadEditions$: Observable<Action> = this.actions$.pipe(
-    ofType<EditionsActions.BulkReadEditions>(EditionsActions.Type.BULK_READ_EDITIONS),
+  ON_BULK_READ_LOCALSS$: Observable<Action> = this.actions$.pipe(
+    ofType<LocalsActions.BULK_READ_LOCALS>(LocalsActions.Type.BULK_READ_LOCALS),
     switchMap(action => {
-      return this.http.get('/assets/editions.json').pipe(
-        tap(editions => {
-          this.editionsStore.runProgressBar();
-          console.log('pokaż progress bar');
-        }),
-        map((editions: Edition[]) => new EditionsActions.BulkReadEditionsSuccess({ editions })),
+      return this.apiService.getLocationList().pipe(
+        // tap(locals => {
+        //   this.localsStore.runProgressBar();
+        //   console.log('pokaż progress bar');
+        // }),console.log('oninit bulk read');
+        tap(locals => {
+            console.log('efects bulk read');
+          }),
+        map((locals: Local[]) => new LocalsActions.BULK_READ_LOCALS_SUCESS({ locals })),
         catchError(err => {
-          return of(new EditionsActions.BulkReadEditionsError());
+          return of(new LocalsActions.BULK_READ_LOCALS_ERROR());
         })
       );
     })
   );
 
   // syntax to change
-  onBulkReadEditionsSuccess$ = createEffect(() =>
+  ON_BULK_READ_LOCALSS_SUCESS$ = createEffect(() =>
     this.actions$.pipe(
-      ofType<EditionsActions.BulkReadEditionsSuccess>(EditionsActions.Type.BULK_READ_EDITIONS_SUCCESS),
+      ofType<LocalsActions.BULK_READ_LOCALS_SUCESS>(LocalsActions.Type.BULK_READ_LOCALS_SUCESS),
       tap(action => {
-        this.editionsStore.stopProgressBar();
+        // this.localsStore.stopProgressBar();
       })
     ), { dispatch: false });
  
-    bulkReadSuccess$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType<EditionsActions.BulkReadEditionsSuccess>(EditionsActions.Type.BULK_READ_EDITIONS_SUCCESS),
-      tap(action => {
-        this.store.subsetEditions(0, 10);
-      })
-    ), { dispatch: false });
+    // BULK_READ_LOCALSS_SUCESS$ = createEffect(() =>
+    // this.actions$.pipe(
+    //   ofType<LocalsActions.BULK_READ_LOCALS_SUCESS>(LocalsActions.Type.BULK_READ_LOCALS_SUCESS),
+    //   tap(action => {
+    //     this.store.bulkReadLocals();
+    //   })
+    // ), { dispatch: false });
     
 
   constructor(
     private actions$: Actions,
+    private localsStore: LocalsStore,
     private store$: Store<AppState>,
-    private http: HttpClient,
-    private editionsStore: EditionsStore,
-    private store: EditionsStore
+    private store: LocalsStore,
+    private apiService: RestApiService,
   ) {}
+
 }

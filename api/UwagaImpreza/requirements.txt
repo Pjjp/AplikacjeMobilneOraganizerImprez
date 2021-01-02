@@ -13,3 +13,7 @@ django-cors-headers==3.5.0
 
 # -- for image storage
 Pillow==8.0.1
+
+# -- for user authentication
+djangorestframework-simplejwt==4.6.0
+

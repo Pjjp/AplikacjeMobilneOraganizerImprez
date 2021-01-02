@@ -1,15 +1,15 @@
-import { createSelector } from 'src/app/@store/guests/node_modules/@ngrx/store';
+import { createSelector } from '@ngrx/store';
 
 import { AppState } from '../app-state';
-import { EditionsState } from './locals.state';
+import { LocalsState } from './locals.state';
 
-export namespace EditionsSelectors {
-  export const editions = (state: AppState) => state.editions;
+export namespace LocalsSelectors {
+  export const locals = (state: AppState) => state.locals;
 
-  export function getEditions() {
+  export function getLocals() {
     return createSelector(
-      editions,
-      (state: EditionsState) => state
+      locals,
+      (state: LocalsState) => state
     );
   }
 }

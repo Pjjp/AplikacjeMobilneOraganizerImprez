@@ -1,1 +1,122 @@
-<p>add-edit-local works!</p>
+<mat-card  class="local-card">
+    <mat-card-header class='header'>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ local.local_name   }}</mat-card-title>
+      <mat-card-subtitle>local</mat-card-subtitle>
+    </mat-card-header>
+      <mat-card-content class='content'>
+
+        <mat-accordion>
+          <mat-expansion-panel class='expansion' hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Pokój
+              </mat-panel-title>
+              <mat-panel-description>
+                <span class="fill-space"></span>
+                <mat-icon>meeting_room</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-list role="list">
+              <mat-list-item role="listitem" >
+                Przedział Wiekowy
+                <br> {{ local.room_state.age_span.min_age  }} : {{ local.room_state.age_span.max_age  }}
+                <!-- <span class="fill-space"></span>
+                <mat-icon>description</mat-icon> -->
+              </mat-list-item>
+              <mat-list-item role="listitem" >
+                Otwartość Pokoju
+                <br> {{true == local.room_state.is_open  ? 'Otwarty !! ;)' : 'Niestey nie :(' }}
+                <!-- <span class="fill-space"></span>
+                <mat-icon>description</mat-icon> -->
+              </mat-list-item>
+              <mat-list-item role="listitem" >
+                Liczba gości
+                <br> {{local.room_state.member_count }}
+                <!-- <span class="fill-space"></span>
+                <mat-icon>description</mat-icon> -->
+              </mat-list-item>
+              <mat-list-item role="listitem" >
+                Dozwolona liczba gości
+                <br> {{local.room_state.max_member_count }}
+                <!-- <span class="fill-space"></span>
+                <mat-icon>description</mat-icon> -->
+              </mat-list-item>
+              <mat-list-item role="listitem" >
+                Selekcja Wiekowa
+                <br> {{true == local.room_state.is_selction  ? 'Impreza z ograniczeniem wiekowym' : 'Wstęp w każdym wieku'}}
+                <!-- <span class="fill-space"></span>
+                <mat-icon>description</mat-icon> -->
+              </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel class='expansion' hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Goście
+              </mat-panel-title>
+              <mat-panel-description>
+                <!-- szczegóły -->
+                <span class="fill-space"></span>
+                <mat-icon>account_circle</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-list role="list">
+              <mat-list-item role="listitem" >
+                email: {{local.guests.email}}
+              </mat-list-item>
+              <mat-list-item role="listitem" >
+                description: {{local.guests.description}}
+              </mat-list-item>
+              <mat-list-item role="listitem" >
+                age: {{local.guests.age}}
+              </mat-list-item>
+              <mat-list-item role="listitem" >
+                sex: {{local.guests.sex}}
+              </mat-list-item>
+              <mat-list-item role="listitem" >
+                location: {{local.guests.location}}
+              </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel class='expansion' hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Gospodarz
+              </mat-panel-title>
+              <mat-panel-description>
+                <!-- szczegóły -->
+                <span class="fill-space"></span>
+                <mat-icon>account_circle</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-list role="list">
+              <mat-list-item role="listitem" >
+                email: {{local.host.email}}
+              </mat-list-item>
+              <mat-list-item role="listitem" >
+                description: {{local.host.description}}
+              </mat-list-item>
+              <mat-list-item role="listitem" >
+                age: {{local.host.age}}
+              </mat-list-item>
+              <mat-list-item role="listitem" >
+                sex: {{local.host.sex}}
+              </mat-list-item>
+              <mat-list-item role="listitem" >
+                location: {{local.host.location}}
+              </mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+
+        </mat-accordion>
+    </mat-card-content>
+      
+      <mat-card-actions>
+        
+        <button mat-raised-button >Join</button>
+
+      </mat-card-actions>
+</mat-card>

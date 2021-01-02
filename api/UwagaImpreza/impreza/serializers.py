@@ -55,6 +55,13 @@ class RoomStateSerializer(serializers.ModelSerializer):
             'max_member_count', 'is_selction']
 
 
+from django.contrib.auth.hashers import make_password
+
+
+def validate_password(value: str) -> str:
+    return make_password(value)
+
+
 class UserSerializer(serializers.ModelSerializer):
 
     location = CordinatesSerializer(
@@ -65,8 +72,10 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'name', 'email', 'description', 'age',
+            'password', 'username', 'email', 'description', 'age',
             'sex', 'avatar', 'location']
+
+    password = serializers.DateField(validators=[validate_password])
 
 
 class LocalSerializer(serializers.ModelSerializer):

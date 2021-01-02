@@ -10,13 +10,15 @@ import { ShowLocalComponent } from './local/show-local/show-local.component';
 import { AddEditLocalComponent } from './local/add-edit-local/add-edit-local.component';
 import { GuestComponent } from './guest/guest.component';
 import { ShowGuestComponent } from './guest/show-guest/show-guest.component';
-import { AddEditGuestComponent } from './guest/add-edit-guest/add-edit-guest.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { AppRoutes } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { SharedDependenciesModule } from './@shared-dependencies/shared-dependencies.module';
-import { SharedModule } from './@shared/shared.module'
+import { SharedModule } from './@shared/shared.module';
+import { LocalModule } from './local/local.module'
+
+import { AppStoreModule } from './@store';
 
 
 @NgModule({
@@ -27,7 +29,6 @@ import { SharedModule } from './@shared/shared.module'
     AddEditLocalComponent,
     GuestComponent,
     ShowGuestComponent,
-    AddEditGuestComponent,
     PageNotFoundComponent,
   ],
   imports: [
@@ -39,6 +40,8 @@ import { SharedModule } from './@shared/shared.module'
     SharedDependenciesModule,
     BrowserAnimationsModule,
     SharedModule,
+    AppStoreModule,
+    LocalModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
